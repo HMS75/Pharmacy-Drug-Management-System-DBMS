@@ -221,7 +221,6 @@ def orders_customer():
     conn.close()
     return render_template('index10.html', orders=orders)
 
-# my code for the orders_vendor error
 # Route 10: Vendors Order Page
 @app.route('/orders_vendor')
 def orders_vendor():
