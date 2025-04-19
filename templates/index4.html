@@ -1,0 +1,40 @@
+<html>
+    <head>
+        <title> Register Page (Customer)  </title>
+        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    </head>
+    <body>
+        <center>
+            <div class="container3">
+                <H2> Register New Customer </H2>
+                <form action="/register-customer" method="POST">
+                    <input type="text" id="nameCustomer" placeholder="Enter User Name" name="customername" required>
+                    <hr>
+                    <br> <br>
+                    <input type="text" id="phnoCustomer" placeholder="Enter Phone Number" name="phone" required>
+                    <hr>
+                    <br> <br>
+                    <input type="text" id="addressCustomer" placeholder="Enter Address" name="address" required>
+                    <hr>
+                    <br> <br>
+                    <input type="text" id="customerID" placeholder="Enter Customer ID" name="customer_id" required>
+                    <hr>
+                    <br> <br>
+                    <input type="password" id="passRegisterCustomer1" placeholder="Enter Password" name="password" required>
+                    <hr>
+                    <br> <br>
+                    <input type="password" id="passRegisterCustomer2" placeholder="Retype Password" name="confirm_password" required>
+                    <hr>
+                    <br> <br>
+                    <center> <!--<a href="index5.html">--> <button type="submit"> Submit </button> <!--</a>--> </center>
+                </form>
+            </div>
+        </center>
+        <!--<img src="finalPharmacy.jpg">-->
+        <img src="{{ url_for('static', filename='finalPharmacy.jpg') }}" alt="Image">
+    </body>
+</html>
+
+<!-- What I changed using GPT: form's action and method, and name = customername, phone, address, customer_id, password, confirm_password & required & type='submit'-->

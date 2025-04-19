@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title> Orders Page (Customer) </title>
+        <style>
+            body {
+                background-color: #E1FAF7;
+            }
+            nav {
+                background-color: black;
+            }
+            nav a {
+                display: inline-block;
+                padding: 14px 20px;
+                color: aliceblue;
+                text-decoration: none;
+            }
+            nav a:hover {
+                background-color: brown;
+                color: aliceblue;
+            }
+            button {
+                background-color: black;
+                color: aliceblue;
+            }
+            button:hover {
+                background-color: rgb(46, 43, 43);
+            }
+            .box {
+            background-color: whitesmoke;
+            margin: 10px;
+            margin-top: 5px;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            }
+            img {
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body id="home">
+        <nav>
+            <a href="{{ url_for('customer_home') }}"> HOME </a>
+            <a href="/buy"> BUY </a>
+            <a href="{{ url_for('orders_customer') }}"> ORDERS </a>
+            <a href="{{ url_for('index') }}" style="background-color: beige;color: black;"> LOGOUT </a>
+        </nav>
+        <center> <h2>Orders for Your Medicines</h2> </center>
+        <center> 
+            <table border="1" id="vendorOrdersTable">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer Name</th>
+                    <th>Medicine</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+            </table>
+        </center>
+        <script>
+            fetch('/api/customer-orders')
+            .then(response => response.json())
+            .then(data => {
+                const table = document.getElementById("customerOrdersTable");
+    
+                data.forEach(order => {
+                    const row = document.createElement("tr");
+                    row.innerHTML = `
+                        <td>${order.order_id}</td>
+                        <td>${order.medicine_name}</td>
+                        <td>${order.quantity}</td>
+                        <td>${order.order_date}</td>
+                        <td>${order.status}</td>
+                    `;
+                    table.appendChild(row);
+                });
+            })
+            .catch(error => {
+                console.error("Error loading customer orders:", error);
+            });
+        </script>
+    </body>
+</html>
+
+<!-- used GPT for Script and table idea -->

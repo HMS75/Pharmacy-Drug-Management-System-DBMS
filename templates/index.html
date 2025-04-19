@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title> Index Page </title>
+        <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+    </head>
+    <body>
+        <center>
+        <div class="container">
+            <H2> Drug Store Management </H2> 
+            <form action="/login" method="GET">
+                <!--<a href="index2.html">--> <button type="submit"> Login </button> <!-- </a>-->
+            </form>
+            <br>
+
+            <form action="/register-customer" method="GET">
+                <!--<a href="index4.html">--> <button type="submit"> Register as Customer </button> <!--</a>-->
+            </form>
+            <br>
+
+            <form action="/register-vendor" method="GET">
+                <!--<a href="index3.html">--> <button type="submit"> Register as Vendor </button> <!--</a>-->
+            </form>
+        </div>
+        </center>
+        <!--<img src="finalPharmacy.jpg">-->
+        <img src="{{ url_for('static', filename='finalPharmacy.jpg') }}" alt="Image">
+
+    </body>
+</html>
+
+<!--What have I edited using GPT: adding form action and method, and type='submit' -->

@@ -1,0 +1,143 @@
+<html>
+    <head>
+        <title> Buy Page </title>
+        <style>
+            body {
+                background-color: #E1FAF7;
+            }
+            nav {
+                background-color: black;
+            }
+            nav a {
+                display: inline-block;
+                padding: 14px 20px;
+                color: aliceblue;
+                text-decoration: none;
+            }
+            nav a:hover {
+                background-color: brown;
+                color: aliceblue;
+            }
+            button {
+                background-color: black;
+                color: aliceblue;
+            }
+            button:hover {
+                background-color: rgb(46, 43, 43);
+            }
+            .box {
+            background-color: whitesmoke;
+            margin: 10px;
+            margin-top: 5px;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            }
+            img {
+                height: 200px;
+            }
+        </style>
+    </head>
+    <body id="home">
+        <!--<nav>
+            <a href="/templates/index7.html"> HOME </a>
+            <a href="#home"> BUY </a> 
+            THE ABOVE LINE ISN'T FUNCTIONING AS I WANT IT TO.
+            IGNORE ABOVE COMMENT. IT SEEMS TO BE WORKING FINE.
+            <a href="ordersCustomer.html"> ORDERS </a>
+            <a href="/templates/index.html" style="background-color: beige;color: black;"> LOGOUT </a>
+        </nav>-->
+        <nav>
+            <a href="{{ url_for('customer_home') }}"> HOME </a>
+            <a href="/buy"> BUY </a>
+            <a href="{{ url_for('orders_customer') }}"> ORDERS </a>
+            <a href="{{ url_for('index') }}" style="background-color: beige;color: black;"> LOGOUT </a>
+        </nav>
+        
+        <div class="box">
+            <form action="/buy" method="POST"> <!-- GPT -->
+                <center> 
+                    <!--<img src="pills.jpg">-->
+                    <img src="{{ url_for('static', filename='pills.jpg') }}" alt="Image">
+                </center>
+                <center> <b> Aspirin </b> </center>
+                <br>
+                <!--<center> ID: a009 </center
+                Manufacturer: Some Manufacturer Name 
+                <center> Mfg Date: 15.03.25 </center>
+                <center> Stock: 100 </center>--> 
+                
+                <!-- all type=hidden from GPT -->
+                <input type="hidden" name="medicine_id" value="a009">
+                <input type="hidden" name="medicine_name" value="Aspirin">
+                <input type="hidden" name="manufacturer" value="Some Manufacturer Name">
+                <input type="hidden" name="mfg_date" value="2025-03-15">
+                <input type="hidden" name="stock" value="100">
+
+                <input type="number" name='quantity' placeholder="Enter Quantity" min="1" required>
+                <!-- But why required? GPT. -->
+                <button type="submit"> Buy </button>
+            </form>
+        </div>
+
+        <div class="box">
+            <form action="/buy" method="POST"> <!-- GPT -->
+                <center> 
+                    <!--<img src="pills.jpg">-->
+                    <img src="{{ url_for('static', filename='pills.jpg') }}" alt="Image">
+                </center>
+                <center> <b> Crocin </b> </center>
+                <br>
+                <!--<center> ID: a008 </center>
+                Manufacturer: Some Manufacturer Name 
+                <center> Mfg Date: 17.01.25 </center>
+                <center> Stock: 100 </center>-->
+
+                <!-- all type=hidden from GPT -->
+                <input type="hidden" name="medicine_id" value="a008">
+                <input type="hidden" name="medicine_name" value="Crocin">
+                <input type="hidden" name="manufacturer" value="Some Manufacturer Name">
+                <input type="hidden" name="mfg_date" value="2025-01-17">
+                <input type="hidden" name="stock" value="100">
+
+                <input type="number" name='quantity2' placeholder="Enter Quantity" min="1" required>
+                <!-- But why required? GPT. -->
+                <button type="submit"> Buy </button>
+            </form>
+        </div>
+
+        <!--<div class="box">
+            <center> <img src="pills.jpg"> </center>
+            <center> <b> Aspirin </b> </center>
+            <br>
+            <center> ID: a009 </center>
+            Manufacturer: Some Manufacturer Name 
+            <center> Mfg Date: 15.03.25 </center>
+            <center> Stock: 100 </center>
+            <input type="text" placeholder="Enter Quantity">
+            <button> Buy </button>
+        </div>
+        <div class="box">
+            <center> <img src="pills.jpg"> </center>
+            <center> <b> Aspirin </b> </center>
+            <br>
+            <center> ID: a009 </center>
+            Manufacturer: Some Manufacturer Name 
+            <center> Mfg Date: 15.03.25 </center>
+            <center> Stock: 100 </center>
+            <input type="text" placeholder="Enter Quantity">
+            <button> Buy </button>
+        </div>
+        <div class="box">
+            <center> <img src="pills.jpg"> </center>
+            <center> <b> Aspirin </b> </center>
+            <br>
+            <center> ID: a009 </center>
+            Manufacturer: Some Manufacturer Name 
+            <center> Mfg Date: 15.03.25 </center>
+            <center> Stock: 100 </center>
+            <input type="text" placeholder="Enter Quantity">
+            <button> Buy </button>
+        </div> -->
+    </body>
+</html>

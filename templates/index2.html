@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login Page</title>
+    <!--<link rel="stylesheet" type="text/css" href="style.css">-->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <center>
+        <div class="container2">
+            <h2>Login</h2>
+            <form id="loginForm" action="/login" method="POST">
+                <select id="accountType" name="role" required> 
+                    <option value="">Select Account Type</option>
+                    <option value="vendor">Vendor</option>
+                    <option value="customer">Customer</option>
+                </select>
+                <br><br><br>
+                <input type="text" id="userID" placeholder="Enter User ID" name="username">
+                <hr>
+                <br><br>
+                <input type="password" id="password" placeholder="Enter Password" name="password">
+                <hr>
+                <br><br>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </center>
+
+    <!--<img src="finalPharmacy.jpg">-->
+    <img src="{{ url_for('static', filename='finalPharmacy.jpg') }}" alt="Image">
+
+    <!-- What have I added from GPT: action, method for form and name=username, password, role-->
+
+</body>
+</html>
