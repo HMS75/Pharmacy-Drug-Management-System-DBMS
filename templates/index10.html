@@ -49,38 +49,29 @@
         
         <center> <h2>Orders for Your Medicines</h2> </center>
         <center>
-            <table id="vendorOrdersTable">
+            <table border="1">
                 <tr>
                     <th>Order ID</th>
                     <th>Customer Name</th>
                     <th>Medicine</th>
                     <th>Quantity</th>
-                    <th>Status</th>
+                    <th>Date of Order</th>
+                    <th>Price</th>
+                    <!--<th>Status</th>-->
                 </tr>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.order_id }}</td>
+                    <td>{{ order.customer_name}}</td>
+                    <td>{{ order.medicine_name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.order_date }}</td>
+                    <td>{{ order.price }}</td>
+                    <!--<td>{{ order.status }}</td>-->
+                </tr>
+                {% endfor %}
             </table>
         </center>
-        <script>
-            fetch('/api/vendor-orders')
-            .then(response => response.json())
-            .then(data => {
-                const table = document.getElementById("vendorOrdersTable");
-    
-                data.forEach(order => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${order.order_id}</td>
-                        <td>${order.customer_name}</td>
-                        <td>${order.medicine_name}</td>
-                        <td>${order.quantity}</td>
-                        <td>${order.status}</td>
-                    `;
-                    table.appendChild(row);
-                });
-            })
-            .catch(error => {
-                console.error("Error loading vendor orders:", error);
-            });
-        </script>    
     </body>
 </html>
 
