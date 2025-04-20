@@ -47,50 +47,65 @@
             <a href="{{ url_for('index') }}" style="background-color: beige; color: black;"> LOGOUT </a>
         </nav>
 
-        <!--<div class="box">
-            <center> <img src="pills.jpg"> </center>
-            <center> <b> Dolo </b> </center>
-            <br>
-            <center> <b> ID: </b> Dolo2025 </center>
-            <b> Manufacturer: </b>Some Manufacturer Name 
-            <center> <b> Stock: </b> 100 </center>
-            <center> <b> Mfg Date: </b> 15.03.25 </center>
-            <center> <b> Exp Date: </b> 15.07.25 </center>
-            <center> <b> Price: </b> 200 </center>
-            <center> <input type="text" placeholder="Enter Quantity">
-            <button> Buy </button> </center>
-        </div>-->
 
         <div class="box">
-            <form action="/buy" method="POST"> <!-- GPT -->
+            <form action="/restock" method="POST"> <!-- GPT -->
                 <center> 
                     <!--<img src="pills.jpg">-->
                     <img src="{{ url_for('static', filename='pills.jpg') }}" alt="Image"> 
                 </center>
                 <center> <b> Aspirin </b> </center>
                 <br>
-                <!--<center> ID: a009 </center
-                Manufacturer: Some Manufacturer Name 
-                <center> Mfg Date: 15.03.25 </center>
-                <center> Stock: 100 </center>--> 
-                
-                <!-- all type=hidden from GPT -->
-                <input type="hidden" name="medicine_id" value="a009">
-                <input type="hidden" name="medicine_name" value="Aspirin">
-                <input type="hidden" name="manufacturer" value="Some Manufacturer Name">
-                <input type="hidden" name="mfg_date" value="2025-03-15">
-                <input type="hidden" name="stock" value="100">
-
-                <center> <b>ID:</b> Dolo2025<br> </center>
-                <center> <b>Manufacturer:</b> Some Manufacturer <br> Name <br> </center>
-                <center> <b>Stock:</b> 100 <br> </center>
-                <center> <b>Mfg Date:</b> 15.03.25<br> </center>
-                <center> <b>Exp Date:</b> 15.07.25<br> </center>
-                <center> <b>Price:</b> ₹200 <br><br> </center>
-
-                <input type="number" name='quantity' placeholder="Enter Quantity" min="1" required>
-                <!-- But why required? GPT. -->
-                <button type="submit"> Buy </button>
+                <center>
+                <b> Medicine ID: </b> <input type="text" name="medicine_id" required><br>
+                <b> Medicine Name: </b> <input type="text" name="medicine_id" required><br>
+                <b> Manufacturer: </b> <input type="text" name="manufacturer" required><br>
+                <b> Manufacturing Date: </b> <input type="date" name="mfg_date" required><br>
+                <b> Stock Quantity: </b> <input type="text" name="stock" min="1" required><br>
+                <b> Price in ₹: </b> <input type="text" name="price" step="0.01" min="0" required><br>
+                <b> Vendor ID: </b> <input type="text" name="vendor_id" required><br>
+                </center>
+                <button type="submit" value="Add Medicine"> Buy </button>
+            </form>
+        </div>
+        <div class="box">
+            <form action="/restock" method="POST"> <!-- GPT -->
+                <center> 
+                    <!--<img src="pills.jpg">-->
+                    <img src="{{ url_for('static', filename='pills.jpg') }}" alt="Image"> 
+                </center>
+                <center> <b> Aspirin </b> </center>
+                <br>
+                <center>
+                <b> Medicine ID: </b> <input type="text" name="medicine_id" required><br>
+                <b> Medicine Name: </b> <input type="text" name="medicine_id" required><br>
+                <b> Manufacturer: </b> <input type="text" name="manufacturer" required><br>
+                <b> Manufacturing Date: </b> <input type="date" name="mfg_date" required><br>
+                <b> Stock Quantity: </b> <input type="text" name="stock" min="1" required><br>
+                <b> Price in ₹: </b> <input type="text" name="price" step="0.01" min="0" required><br>
+                <b> Vendor ID: </b> <input type="text" name="vendor_id" required><br>
+                </center>
+                <button type="submit" value="Add Medicine"> Buy </button>
+            </form>
+        </div>
+        <div class="box">
+            <form action="/restock" method="POST"> <!-- GPT -->
+                <center> 
+                    <!--<img src="pills.jpg">-->
+                    <img src="{{ url_for('static', filename='pills.jpg') }}" alt="Image"> 
+                </center>
+                <center> <b> Aspirin </b> </center>
+                <br>
+                <center>
+                <b> Medicine ID: </b> <input type="text" name="medicine_id" required><br>
+                <b> Medicine Name: </b> <input type="text" name="medicine_id" required><br>
+                <b> Manufacturer: </b> <input type="text" name="manufacturer" required><br>
+                <b> Manufacturing Date: </b> <input type="date" name="mfg_date" required><br>
+                <b> Stock Quantity: </b> <input type="text" name="stock" min="1" required><br>
+                <b> Price in ₹: </b> <input type="text" name="price" step="0.01" min="0" required><br>
+                <b> Vendor ID: </b> <input type="text" name="vendor_id" required><br>
+                </center>
+                <button type="submit" value="Add Medicine"> Buy </button>
             </form>
         </div>
     </body>
