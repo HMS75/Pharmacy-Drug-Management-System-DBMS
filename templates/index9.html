@@ -33,9 +33,6 @@
             border-radius: 10px;
             display: inline-block;
             }
-            img {
-                height: 200px;
-            }
         </style>
     </head>
     <body id="home">
@@ -47,39 +44,26 @@
         </nav>
         <center> <h2>Orders for Your Medicines</h2> </center>
         <center> 
-            <table border="1" id="vendorOrdersTable">
+            <table border="1">
                 <tr>
                     <th>Order ID</th>
-                    <th>Customer Name</th>
                     <th>Medicine</th>
                     <th>Quantity</th>
+                    <th>Price</th>
                     <th>Date</th>
-                    <th>Status</th>
                 </tr>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order.order_id }}</td>
+                    <td>{{ order.medicine_name }}</td>
+                    <td>{{ order.quantity }}</td>
+                    <td>{{ order.price * order.quantity }}</td>
+                    <td>{{ order.order_date }}</td>
+                </tr>
+                {% endfor %}
             </table>
         </center>
-        <script>
-            fetch('/api/customer-orders')
-            .then(response => response.json())
-            .then(data => {
-                const table = document.getElementById("customerOrdersTable");
-    
-                data.forEach(order => {
-                    const row = document.createElement("tr");
-                    row.innerHTML = `
-                        <td>${order.order_id}</td>
-                        <td>${order.medicine_name}</td>
-                        <td>${order.quantity}</td>
-                        <td>${order.order_date}</td>
-                        <td>${order.status}</td>
-                    `;
-                    table.appendChild(row);
-                });
-            })
-            .catch(error => {
-                console.error("Error loading customer orders:", error);
-            });
-        </script>
+        
     </body>
 </html>
 
