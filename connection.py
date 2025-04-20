@@ -179,26 +179,29 @@ def buy_medicine():
 @app.route('/restock', methods=['GET', 'POST'])
 def restock():
     if request.method == 'POST':
+        # Handle form submission
         medicine_id = request.form['medicine_id']
-        quantity = int(request.form['restock_quantity'])
+        name = request.form['name']
+        manufacturer = request.form['manufacturer']
+        mfg_date = request.form['mfg_date']
+        stock = int(request.form['stock'])
+        price = float(request.form['price'])
+        vendor_id = request.form['vendor_id']
 
         conn = get_db_connection()
         cursor = conn.cursor()
-        cursor.execute("UPDATE medicines SET stock = stock + %s WHERE medicine_id = %s", (quantity, medicine_id))
+        cursor.execute("""
+            INSERT INTO medicines (medicine_id, name, manufacturer, mfg_date, stock, vendor_id, price)
+            VALUES (%s, %s, %s, %s, %s, %s, %s)
+        """, (medicine_id, name, manufacturer, mfg_date, stock, vendor_id, price))
         conn.commit()
         cursor.close()
         conn.close()
 
-        return redirect('/restock')
-
-    # GET method → show restock page with medicine list
-    conn = get_db_connection()
-    cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM medicines")
-    medicines = cursor.fetchall()
-    cursor.close()
-    conn.close()
-    return render_template('index8.html', medicines=medicines)
+        return redirect('/vendor-home')
+    
+    # If method is GET, just show the form
+    return render_template('index8.html')
 
 # Route 9: Customer Orders Page (optional)
 @app.route('/orders-customer')
@@ -214,18 +217,36 @@ def orders_customer():
         FROM orders o
         JOIN medicines m ON o.medicine_id = m.medicine_id
         WHERE o.customer_id = %s
-        ORDER BY o.order_date DESC
+        ORDER BY o.order_date 
     """, (customer_id,))
     orders = cursor.fetchall()
     cursor.close()
     conn.close()
-    return render_template('index10.html', orders=orders)
+    return render_template('index9.html', orders=orders)
 
 # Route 10: Vendors Order Page
-@app.route('/orders_vendor')
+@app.route('/orders_vendor', methods=['GET'])
 def orders_vendor():
-   return render_template('index10.html')
-#successful 
+    # Assuming you have a way to identify the logged-in vendor
+    vendor_id = session.get('user_id')  # or get from your session or login
+
+    if not vendor_id:
+        return "Please log in as a vendor", 400  # Handle vendor login session
+
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    # SQL Query to get orders for this vendor
+    cursor.execute("""
+        SELECT o.order_id, c.name AS customer_name, m.name AS medicine_name, o.quantity, o.order_date, o.price
+        FROM orders o
+        JOIN medicines m ON o.medicine_id = m.medicine_id
+        JOIN customers c ON o.customer_id = c.customer_id
+        WHERE m.vendor_id = %s
+    """, (vendor_id,))
+    orders = cursor.fetchall()
+    cursor.close()
+    conn.close()
+    return render_template('index10.html', orders=orders)
 
 if __name__ == '__main__':
     app.run(debug=True)
